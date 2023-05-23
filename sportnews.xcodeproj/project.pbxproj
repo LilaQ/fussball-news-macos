@@ -11,6 +11,18 @@
 		276578BD2A1CFA9B006B5B52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578BC2A1CFA9B006B5B52 /* ContentView.swift */; };
 		276578BF2A1CFA9C006B5B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276578BE2A1CFA9C006B5B52 /* Assets.xcassets */; };
 		276578C22A1CFA9C006B5B52 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276578C12A1CFA9C006B5B52 /* Preview Assets.xcassets */; };
+		276578CA2A1CFAB6006B5B52 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578C92A1CFAB6006B5B52 /* StatusBarController.swift */; };
+		276578CC2A1CFAC4006B5B52 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578CB2A1CFAC3006B5B52 /* MainMenuView.swift */; };
+		276578CE2A1CFAF9006B5B52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578CD2A1CFAF9006B5B52 /* AppDelegate.swift */; };
+		276578D02A1CFCC0006B5B52 /* Sport.deAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578CF2A1CFCBF006B5B52 /* Sport.deAPI.swift */; };
+		276578D22A1CFCED006B5B52 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578D12A1CFCED006B5B52 /* Logger.swift */; };
+		276578D52A1CFE15006B5B52 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 276578D42A1CFE15006B5B52 /* SwiftSoup */; };
+		276578D72A1CFFA8006B5B52 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578D62A1CFFA8006B5B52 /* NewsView.swift */; };
+		276578DA2A1D0192006B5B52 /* SportWrangler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578D92A1D0192006B5B52 /* SportWrangler.swift */; };
+		276578DD2A1D0772006B5B52 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 276578DC2A1D0771006B5B52 /* Kingfisher */; };
+		276578DF2A1D1DB7006B5B52 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 276578DE2A1D1DB7006B5B52 /* icon.png */; };
+		276578E22A1D446F006B5B52 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578E12A1D446F006B5B52 /* String.swift */; };
+		276578E42A1D4487006B5B52 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578E32A1D4487006B5B52 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +32,16 @@
 		276578BE2A1CFA9C006B5B52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		276578C12A1CFA9C006B5B52 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		276578C32A1CFA9C006B5B52 /* sportnews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sportnews.entitlements; sourceTree = "<group>"; };
+		276578C92A1CFAB6006B5B52 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		276578CB2A1CFAC3006B5B52 /* MainMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		276578CD2A1CFAF9006B5B52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		276578CF2A1CFCBF006B5B52 /* Sport.deAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.deAPI.swift; sourceTree = "<group>"; };
+		276578D12A1CFCED006B5B52 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		276578D62A1CFFA8006B5B52 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		276578D92A1D0192006B5B52 /* SportWrangler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportWrangler.swift; sourceTree = "<group>"; };
+		276578DE2A1D1DB7006B5B52 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		276578E12A1D446F006B5B52 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		276578E32A1D4487006B5B52 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276578DD2A1D0772006B5B52 /* Kingfisher in Frameworks */,
+				276578D52A1CFE15006B5B52 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,11 +76,19 @@
 		276578B92A1CFA9B006B5B52 /* sportnews */ = {
 			isa = PBXGroup;
 			children = (
+				276578DE2A1D1DB7006B5B52 /* icon.png */,
+				276578E02A1D4465006B5B52 /* Extensions */,
+				276578D82A1CFFB1006B5B52 /* Views */,
 				276578BA2A1CFA9B006B5B52 /* sportnewsApp.swift */,
+				276578CD2A1CFAF9006B5B52 /* AppDelegate.swift */,
 				276578BC2A1CFA9B006B5B52 /* ContentView.swift */,
+				276578C92A1CFAB6006B5B52 /* StatusBarController.swift */,
+				276578CF2A1CFCBF006B5B52 /* Sport.deAPI.swift */,
+				276578D12A1CFCED006B5B52 /* Logger.swift */,
 				276578BE2A1CFA9C006B5B52 /* Assets.xcassets */,
 				276578C32A1CFA9C006B5B52 /* sportnews.entitlements */,
 				276578C02A1CFA9C006B5B52 /* Preview Content */,
+				276578D92A1D0192006B5B52 /* SportWrangler.swift */,
 			);
 			path = sportnews;
 			sourceTree = "<group>";
@@ -67,6 +99,24 @@
 				276578C12A1CFA9C006B5B52 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		276578D82A1CFFB1006B5B52 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				276578CB2A1CFAC3006B5B52 /* MainMenuView.swift */,
+				276578D62A1CFFA8006B5B52 /* NewsView.swift */,
+				276578E32A1D4487006B5B52 /* DetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		276578E02A1D4465006B5B52 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				276578E12A1D446F006B5B52 /* String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +135,10 @@
 			dependencies = (
 			);
 			name = sportnews;
+			packageProductDependencies = (
+				276578D42A1CFE15006B5B52 /* SwiftSoup */,
+				276578DC2A1D0771006B5B52 /* Kingfisher */,
+			);
 			productName = sportnews;
 			productReference = 276578B72A1CFA9B006B5B52 /* sportnews.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +167,10 @@
 				Base,
 			);
 			mainGroup = 276578AE2A1CFA9B006B5B52;
+			packageReferences = (
+				276578D32A1CFE15006B5B52 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				276578DB2A1D0771006B5B52 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 276578B82A1CFA9B006B5B52 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				276578C22A1CFA9C006B5B52 /* Preview Assets.xcassets in Resources */,
+				276578DF2A1D1DB7006B5B52 /* icon.png in Resources */,
 				276578BF2A1CFA9C006B5B52 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +199,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				276578BD2A1CFA9B006B5B52 /* ContentView.swift in Sources */,
+				276578D72A1CFFA8006B5B52 /* NewsView.swift in Sources */,
+				276578E22A1D446F006B5B52 /* String.swift in Sources */,
+				276578CA2A1CFAB6006B5B52 /* StatusBarController.swift in Sources */,
+				276578D02A1CFCC0006B5B52 /* Sport.deAPI.swift in Sources */,
+				276578E42A1D4487006B5B52 /* DetailView.swift in Sources */,
+				276578CC2A1CFAC4006B5B52 /* MainMenuView.swift in Sources */,
+				276578DA2A1D0192006B5B52 /* SportWrangler.swift in Sources */,
+				276578D22A1CFCED006B5B52 /* Logger.swift in Sources */,
+				276578CE2A1CFAF9006B5B52 /* AppDelegate.swift in Sources */,
 				276578BB2A1CFA9B006B5B52 /* sportnewsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = sportnews/sportnews.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -292,6 +361,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = sportnews/sportnews.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -336,6 +406,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		276578D32A1CFE15006B5B52 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		276578DB2A1D0771006B5B52 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		276578D42A1CFE15006B5B52 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 276578D32A1CFE15006B5B52 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		276578DC2A1D0771006B5B52 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 276578DB2A1D0771006B5B52 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 276578AF2A1CFA9B006B5B52 /* Project object */;
 }

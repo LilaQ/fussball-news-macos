@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8CE2DC73-DE38-4D6B-A086-6980C2936B95"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF201198-7310-48E9-81AB-C46A7B76C5C8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "sportnews/SportWrangler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "loadDetail(_:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "AF201198-7310-48E9-81AB-C46A7B76C5C8 - 72a4147c34a0c465"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for static sportnews.SportWrangler.loadDetail(Swift.String) async -&gt; Swift.String"
+                  moduleName = "sportnews"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilaq/Documents/Sourcetree/sportnews/sportnews/SportWrangler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  uuid = "AF201198-7310-48E9-81AB-C46A7B76C5C8 - 72a4147c34a0c465"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for static sportnews.SportWrangler.loadDetail(Swift.String) async -&gt; Swift.String"
+                  moduleName = "sportnews"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilaq/Documents/Sourcetree/sportnews/sportnews/SportWrangler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "356">
+               </Location>
+               <Location
+                  uuid = "AF201198-7310-48E9-81AB-C46A7B76C5C8 - 72a4147c34a0c427"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for static sportnews.SportWrangler.loadDetail(Swift.String) async -&gt; Swift.String"
+                  moduleName = "sportnews"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilaq/Documents/Sourcetree/sportnews/sportnews/SportWrangler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "540">
+               </Location>
+               <Location
+                  uuid = "AF201198-7310-48E9-81AB-C46A7B76C5C8 - 72a4147c34a0c427"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for static sportnews.SportWrangler.loadDetail(Swift.String) async -&gt; Swift.String"
+                  moduleName = "sportnews"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilaq/Documents/Sourcetree/sportnews/sportnews/SportWrangler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "632">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A031CD51-3397-41D3-A31F-58881C05D751"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "sportnews/SportWrangler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "loadDetail(_:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "A031CD51-3397-41D3-A31F-58881C05D751 - 72a4147c34a0db82"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for static sportnews.SportWrangler.loadDetail(Swift.String) async -&gt; Swift.String"
+                  moduleName = "sportnews"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilaq/Documents/Sourcetree/sportnews/sportnews/SportWrangler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "1256">
+               </Location>
+               <Location
+                  uuid = "A031CD51-3397-41D3-A31F-58881C05D751 - 72a4147c34a0db82"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for static sportnews.SportWrangler.loadDetail(Swift.String) async -&gt; Swift.String"
+                  moduleName = "sportnews"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilaq/Documents/Sourcetree/sportnews/sportnews/SportWrangler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "1516">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
