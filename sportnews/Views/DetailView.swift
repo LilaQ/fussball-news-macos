@@ -10,23 +10,37 @@ import Kingfisher
 
 struct DetailView: View {
     
-    let news: SportWrangler.ShortNews
+    let news: ShortNews
     @State var open: Bool = false
     @State var detailNews: DetailNews? = nil
+    let onToggle: ()->()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack {
+            HStack(alignment: .top) {
                 KFImage(news.img)
+                    .resizable()
+                    .placeholder({
+                        Image("icon")
+                            .resizable()
+                            .frame(width: 26, height: 26)
+                    })
+                    .frame(width: 26, height: 26)
                 Text(news.title)
+                Spacer()
+                Text(news.timeOrDate)
+                    .font(.caption2)
             }
+            .contentShape(Rectangle())
             
             if open {
                 if let detailNews = detailNews {
                     VStack(alignment: .leading, spacing: 10) {
-                        KFImage(URL(string: detailNews.image.url))
-                            .resizable()
-                            .scaledToFit()
+                        if let url = URL(string: detailNews.image.url) {
+                            KFImage(url)
+                                .resizable()
+                                .scaledToFit()
+                        }
                         Text(detailNews.image.caption)
                             .fontWidth(.condensed)
                             .font(.caption2)
@@ -53,7 +67,6 @@ struct DetailView: View {
                 }
             }
         }
-        .contentShape(Rectangle())
         .onTapGesture {
             if detailNews == nil {
                 Task {
@@ -63,6 +76,7 @@ struct DetailView: View {
             }
             withAnimation {
                 open.toggle()
+                onToggle()
             }
         }
         Divider()

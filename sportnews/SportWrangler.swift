@@ -10,13 +10,6 @@ import SwiftSoup
 
 class SportWrangler: ObservableObject {
     
-    struct ShortNews: Identifiable {
-        var id: String
-        var title: String
-        var img: URL?
-        var link: String
-    }
-    
     static func updateAll() async -> [ShortNews] {
         var rawString = await SportDeAPI.loadAllNews()
         rawString = String(rawString.split(separator: "<!--start module newmon/preferred-->")[1])
@@ -28,16 +21,26 @@ class SportWrangler: ObservableObject {
                 for element in elements {
                     let linkStr = try element.select("a").attr("href")
                     let imgStr = try element.select("img").attr("src")
+                    let comp = try element.select("div.news-object--name-competition").text()
+                    let timeOrDate = try element.select("div.hs-news-published-yearordateortime").text()
                     let imgUrl = URL(string: imgStr)
                     let title = try element.select("h3").text()
-                    let shortNews = ShortNews(id: linkStr, title: title, img: imgUrl, link: linkStr)
+                    let shortNews = ShortNews(id: linkStr, title: title, img: imgUrl, link: linkStr, competition: comp, timeOrDate: timeOrDate)
                     news.append(shortNews)
                 }
             } catch (let error) {
                 Logger.log(.error, "Error while decoding HTML: \(error)")
             }
         }
-        return news.sorted(by: { $0.id < $1.id })
+        return news.sorted(by: {
+            if $0.timeOrDate.isTime && !$1.timeOrDate.isTime {
+                return true
+            } else if !$0.timeOrDate.isTime && $1.timeOrDate.isTime {
+                return false
+            } else {
+                return $0.timeOrDate < $1.timeOrDate
+            }
+        })
     }
     
     static func loadDetail(_ urlString: String) async -> DetailNews? {
@@ -81,6 +84,15 @@ class SportWrangler: ObservableObject {
         return nil
     }
     
+}
+
+struct ShortNews: Identifiable {
+    var id: String
+    var title: String
+    var img: URL?
+    var link: String
+    var competition: String
+    var timeOrDate: String
 }
 
 struct DetailNews: Decodable {

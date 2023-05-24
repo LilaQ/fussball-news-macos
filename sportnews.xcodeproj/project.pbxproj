@@ -23,6 +23,7 @@
 		276578DF2A1D1DB7006B5B52 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 276578DE2A1D1DB7006B5B52 /* icon.png */; };
 		276578E22A1D446F006B5B52 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578E12A1D446F006B5B52 /* String.swift */; };
 		276578E42A1D4487006B5B52 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276578E32A1D4487006B5B52 /* DetailView.swift */; };
+		27D5AF4C2A1ED0FB0060A523 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 27D5AF4B2A1ED0FB0060A523 /* SFSafeSymbols */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27D5AF4C2A1ED0FB0060A523 /* SFSafeSymbols in Frameworks */,
 				276578DD2A1D0772006B5B52 /* Kingfisher in Frameworks */,
 				276578D52A1CFE15006B5B52 /* SwiftSoup in Frameworks */,
 			);
@@ -84,11 +86,11 @@
 				276578BC2A1CFA9B006B5B52 /* ContentView.swift */,
 				276578C92A1CFAB6006B5B52 /* StatusBarController.swift */,
 				276578CF2A1CFCBF006B5B52 /* Sport.deAPI.swift */,
+				276578D92A1D0192006B5B52 /* SportWrangler.swift */,
 				276578D12A1CFCED006B5B52 /* Logger.swift */,
 				276578BE2A1CFA9C006B5B52 /* Assets.xcassets */,
 				276578C32A1CFA9C006B5B52 /* sportnews.entitlements */,
 				276578C02A1CFA9C006B5B52 /* Preview Content */,
-				276578D92A1D0192006B5B52 /* SportWrangler.swift */,
 			);
 			path = sportnews;
 			sourceTree = "<group>";
@@ -138,6 +140,7 @@
 			packageProductDependencies = (
 				276578D42A1CFE15006B5B52 /* SwiftSoup */,
 				276578DC2A1D0771006B5B52 /* Kingfisher */,
+				27D5AF4B2A1ED0FB0060A523 /* SFSafeSymbols */,
 			);
 			productName = sportnews;
 			productReference = 276578B72A1CFA9B006B5B52 /* sportnews.app */;
@@ -170,6 +173,7 @@
 			packageReferences = (
 				276578D32A1CFE15006B5B52 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				276578DB2A1D0771006B5B52 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				27D5AF4A2A1ED0FB0060A523 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			productRefGroup = 276578B82A1CFA9B006B5B52 /* Products */;
 			projectDirPath = "";
@@ -424,6 +428,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		27D5AF4A2A1ED0FB0060A523 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -436,6 +448,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 276578DB2A1D0771006B5B52 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		27D5AF4B2A1ED0FB0060A523 /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27D5AF4A2A1ED0FB0060A523 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

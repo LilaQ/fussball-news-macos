@@ -19,4 +19,8 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
+    
+    var isTime: Bool {
+        return self.contains(":")
+    }
 }

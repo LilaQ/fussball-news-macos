@@ -40,7 +40,7 @@ class StatusBarController {
     private var newsPopover: NSPopover
     
     var clicked: NSStatusItem?
-    var shortNews: [SportWrangler.ShortNews] = []
+    var shortNews: [ShortNews] = []
     
     var timer:Timer!
     
@@ -202,12 +202,19 @@ class StatusBarController {
     
     @objc func updateData() {
         Task {
+            let filteredComps: [String] = (UserDefaults.standard.array(forKey: "filteredComps") ?? []) as? [String] ?? []
             let newNews = await SportWrangler.updateAll()
             for news in newNews {
-                if !self.shortNews.contains(where: { $0.id == news.id }) {
+                
+                //  if it already exists, we replace the time tag, since it might change from time to day
+                if let index = self.shortNews.firstIndex(where: { $0.id == news.id }) {
+                    self.shortNews[index].timeOrDate = news.timeOrDate
+                }
+                
+                //  not found, insert
+                else {
                     self.shortNews.insert(news, at: 0)
-                    
-                    if UserDefaults.standard.bool(forKey: "showNotifications") {
+                    if UserDefaults.standard.bool(forKey: "showNotifications") && !filteredComps.contains(news.competition) {
                         if let uri = news.img {
                             downloadImage(from: uri, closure: { fileData in
                                 let fileUri = self.set(data: fileData, ext: uri.lastPathComponent)
@@ -219,6 +226,13 @@ class StatusBarController {
                     }
                 }
             }
+            
+            //  cut-off, so we don't end up with thousands of news at once
+            let maxNews = UserDefaults.standard.integer(forKey: "maxNews")
+            if self.shortNews.count > maxNews {
+                self.shortNews = Array(self.shortNews.prefix(maxNews))
+            }
+            print("we have a total of \(self.shortNews.count) news")
         }
     }
 }

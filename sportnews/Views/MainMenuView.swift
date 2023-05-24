@@ -25,12 +25,20 @@ struct MainMenuView: View {
     
     let statusBarController: StatusBarController
     @AppStorage("showNotifications") var showNotifications: Bool = true
+    @AppStorage("maxNews") var maxNews: Int = 100
+    @State var maxNewsString: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             Toggle(isOn: $showNotifications, label: {
                 Text("Show Notifications")
             })
+            
+            HStack {
+                Text("Max News")
+                TextField("Max news", text: $maxNewsString)
+            }
+            
             HStack {
                 Button(action: {
                     statusBarController.updateData()
@@ -48,5 +56,12 @@ struct MainMenuView: View {
         }
         .padding(20)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear {
+            //  load from AppStorage to TextField
+            self.maxNewsString = String(self.maxNews)
+        }
+        .onChange(of: self.maxNewsString) { val in
+            self.maxNews = Int(val) ?? 100
+        }
     }
 }
