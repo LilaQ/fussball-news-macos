@@ -19,12 +19,16 @@ class SportWrangler: ObservableObject {
             do {
                 let elements: Elements = try doc.select("li")
                 for element in elements {
+                    let title = try element.select("h3").text()
+                    print(title)
                     let linkStr = try element.select("a").attr("href")
                     let imgStr = try element.select("img").attr("src")
-                    let comp = try element.select("div.news-object--name-competition").text()
+                    var comp = (try? element.select("div.news-object--name-competition").text()) ?? "General"
+                    if comp.isEmpty {
+                        comp = "General"
+                    }
                     let timeOrDate = try element.select("div.hs-news-published-yearordateortime").text()
                     let imgUrl = URL(string: imgStr)
-                    let title = try element.select("h3").text()
                     let shortNews = ShortNews(id: linkStr, title: title, img: imgUrl, link: linkStr, competition: comp, timeOrDate: timeOrDate)
                     news.append(shortNews)
                 }
@@ -41,6 +45,34 @@ class SportWrangler: ObservableObject {
                 return $0.timeOrDate < $1.timeOrDate
             }
         })
+    }
+    
+    static func loadGallery(_ urlString: String) async -> GalleryNews? {
+        let rawString = await SportDeAPI.loadSingleNews(urlStr: urlString)
+        
+        if let doc = parse(rawString) {
+            do {
+                var pages: [GalleryNews.Page] = []
+                let elements: Elements = try doc.select("div.hs-slideshow li.item")
+                for element in elements {
+                    let image = URL(string: try element.select("img").attr("src"))
+                    var title: String? = (try? element.select("h2.title").text())
+                    if title == nil {
+                        title = try? element.select("h1.title").text()
+                    }
+                    if let _title = title, _title.isEmpty {
+                        title = try? element.select("h1.title").text()
+                    }
+                    let subtitle = try element.select("div.subtitle").text()
+                    let page = GalleryNews.Page(img: image, title: title ?? "", subtitle: subtitle)
+                    pages.append(page)
+                }
+                return GalleryNews(pages: pages)
+            } catch(let error) {
+                Logger.log(.error, "Error while decoding HTML: \(error)")
+            }
+        }
+        return nil
     }
     
     static func loadDetail(_ urlString: String) async -> DetailNews? {
@@ -94,6 +126,18 @@ struct ShortNews: Identifiable {
     var competition: String
     var timeOrDate: String
 }
+
+struct GalleryNews: Decodable {
+    
+    struct Page: Decodable {
+        let img: URL?
+        let title: String
+        let subtitle: String
+    }
+    
+    let pages: [Page]
+}
+
 
 struct DetailNews: Decodable {
     

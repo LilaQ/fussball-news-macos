@@ -27,6 +27,8 @@ struct MainMenuView: View {
     @AppStorage("showNotifications") var showNotifications: Bool = true
     @AppStorage("maxNews") var maxNews: Int = 100
     @State var maxNewsString: String = ""
+    @State var width: String = ""
+    @State var height: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -38,6 +40,21 @@ struct MainMenuView: View {
                 Text("Max News")
                 TextField("Max news", text: $maxNewsString)
             }
+            
+            Divider()
+            
+            Text("Set the dimensions of the News popover")
+            HStack {
+                Text("Width:")
+                TextField("", text: $width)
+            }
+            HStack {
+                Text("Height: ")
+                TextField("", text: $height)
+            }
+            
+            
+            Divider()
             
             HStack {
                 Button(action: {
@@ -59,9 +76,17 @@ struct MainMenuView: View {
         .onAppear {
             //  load from AppStorage to TextField
             self.maxNewsString = String(self.maxNews)
+            self.width = String(UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_WIDTH))
+            self.height = String(UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_HEIGHT))
         }
         .onChange(of: self.maxNewsString) { val in
             self.maxNews = Int(val) ?? 100
+        }
+        .onChange(of: self.width) { _ in
+            UserDefaults.standard.setValue(Int(width) ?? 1000, forKey: StatusBarController.WINDOW_WIDTH)
+        }
+        .onChange(of: self.height) { _ in
+            UserDefaults.standard.setValue(Int(height) ?? 800, forKey: StatusBarController.WINDOW_HEIGHT)
         }
     }
 }

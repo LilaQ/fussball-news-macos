@@ -44,18 +44,31 @@ class StatusBarController {
     
     var timer:Timer!
     
+    static let WINDOW_WIDTH = "windowWidth"
+    static let WINDOW_HEIGHT = "windowHeight"
+    
     init(_ popover: NSPopover) {
         self.popover = popover
         self.popover.behavior = .transient
         
         statusBar = NSStatusBar.init()
         
+        
+        if UserDefaults.standard.value(forKey: StatusBarController.WINDOW_WIDTH) == nil {
+            UserDefaults.standard.set(800, forKey: StatusBarController.WINDOW_WIDTH)
+        }
+        if UserDefaults.standard.value(forKey: StatusBarController.WINDOW_HEIGHT) == nil {
+            UserDefaults.standard.set(1000, forKey: StatusBarController.WINDOW_HEIGHT)
+        }
+        
         // Creating popovers for Main menu
         mainMenuPopover = NSPopover()
         mainMenuPopover.contentSize = NSSize(width: 250, height: 50)
         mainMenuPopover.behavior = NSPopover.Behavior.transient
         newsPopover = NSPopover()
-        newsPopover.contentSize = NSSize(width: 480, height: 520)
+        newsPopover.contentSize = NSSize(
+            width: UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_WIDTH),
+            height: UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_HEIGHT))
         newsPopover.behavior = NSPopover.Behavior.transient
         
         //  init status bar items
@@ -95,6 +108,7 @@ class StatusBarController {
         updateData()
         
     }
+    
     
     @objc
     func toggleMainMenuPopover(sender: AnyObject) {
@@ -138,6 +152,9 @@ class StatusBarController {
     @objc
     func toggleNewsPopover(sender: AnyObject) {
         if(!mainMenuPopover.isShown) {
+            newsPopover.contentSize = NSSize(
+                width: UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_WIDTH),
+                height: UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_HEIGHT))
             showPopover(sender, popover: newsPopover, view: NewsView(shortNews: shortNews))
         }
         else {

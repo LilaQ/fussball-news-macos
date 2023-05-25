@@ -13,6 +13,7 @@ struct DetailView: View {
     let news: ShortNews
     @State var open: Bool = false
     @State var detailNews: DetailNews? = nil
+    @State var galleryNews: GalleryNews? = nil
     let onToggle: ()->()
     
     var body: some View {
@@ -34,6 +35,8 @@ struct DetailView: View {
             .contentShape(Rectangle())
             
             if open {
+                
+                //  detail news
                 if let detailNews = detailNews {
                     VStack(alignment: .leading, spacing: 10) {
                         if let url = URL(string: detailNews.image.url) {
@@ -58,7 +61,15 @@ struct DetailView: View {
                     }
                     .frame(minHeight: 200)
                     .transition(.move(edge: .bottom))
-                } else {
+                }
+                
+                //  gallery
+                else if let galleryNews = galleryNews {
+                    GalleryView(galleryNews: galleryNews)
+                }
+                
+                //  loading
+                else {
                     HStack {
                         ProgressView()
                     }
@@ -68,10 +79,15 @@ struct DetailView: View {
             }
         }
         .onTapGesture {
-            if detailNews == nil {
+            if detailNews == nil && !news.id.contains("diashow") {
                 Task {
                     await self.detailNews = SportWrangler.loadDetail(news.link)
                     print("downloaded article")
+                }
+            } else if galleryNews == nil && news.id.contains("diashow") {
+                Task {
+                    await self.galleryNews = SportWrangler.loadGallery(news.link)
+                    print("downloaded gallery")
                 }
             }
             withAnimation {
@@ -80,5 +96,36 @@ struct DetailView: View {
             }
         }
         Divider()
+    }
+}
+
+struct GalleryView: View {
+    
+    let galleryNews: GalleryNews
+    @State var selectedPage: Int = 0
+    
+    var body: some View {
+        HStack {
+            TabView(selection: $selectedPage, content: {
+                ForEach(galleryNews.pages.indices, id: \.self) { pageIndex in
+                    VStack {
+                        Text(galleryNews.pages[pageIndex].title)
+                            .font(.headline)
+                        if let url = galleryNews.pages[pageIndex].img {
+                            KFImage(url)
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        Text(galleryNews.pages[pageIndex].subtitle)
+                            .font(.caption2)
+                    }
+                    .tabItem {
+                        Text("\(pageIndex)")
+                    }
+                    .padding(20)
+                }
+            })
+        }
+//        .frame(height: 400)
     }
 }
