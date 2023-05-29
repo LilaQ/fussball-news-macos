@@ -38,9 +38,9 @@ class SportDeAPI {
         }
     }
     
-    static func loadAllNews() async -> String {
+    static func loadAllNews(_ page: Int = 1) async -> String {
 
-        let urlComponents = urlComponents()
+        let urlComponents = URLComponents(string: "https://www.sport.de/widget_news_archiv-content/ty-sport/ir1/fn/tn/pa\(page)/")!
         
         let result: Result<String, SportDeAPIError> = await request(urlComponents: urlComponents)
         switch result {

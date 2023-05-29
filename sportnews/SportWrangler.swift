@@ -11,11 +11,9 @@ import SwiftSoup
 class SportWrangler: ObservableObject {
     
     static func updateAll() async -> [ShortNews] {
-        var rawString = await SportDeAPI.loadAllNews()
-        rawString = String(rawString.split(separator: "<!--start module newmon/preferred-->")[1])
-        rawString = String(rawString.split(separator: "<!--end module newmon/preferred-->")[0])
+        let rawString = await SportDeAPI.loadAllNews()
         var news: [ShortNews] = []
-        if let doc = parse(rawString) {
+        if let doc = try? parse(rawString)?.select(".module-newmon") {
             do {
                 let elements: Elements = try doc.select("li")
                 for element in elements {
@@ -73,6 +71,34 @@ class SportWrangler: ObservableObject {
             }
         }
         return nil
+    }
+    
+    static func loadNewsticker(_ urlString: String) async -> [MatchupElement] {
+        let rawString = await SportDeAPI.loadSingleNews(urlStr: urlString)
+        
+        if let doc = parse(rawString) {
+            do {
+                var matchups: [MatchupElement] = []
+                let elements: Elements = try doc.select("div.module-gameplan div.match")
+                for element in elements {
+                    let teamNameHome = try element.select("div.team-name-home").text()
+                    let teamImageHome = try element.select("div.team-image-home img").attr("src")
+                    let teamHome = MatchupElement.Team(name: teamNameHome, image: teamImageHome)
+                    let teamNameAway = try element.select("div.team-name-away").text()
+                    let teamImageAway = try element.select("div.team-image-away img").attr("src")
+                    let teamAway = MatchupElement.Team(name: teamNameAway, image: teamImageAway)
+                    let result = try element.select("div.match-result a").text()
+                    let link = try element.select("div.match-result a").attr("href")
+                    let status = try element.hasClass("finished") ? MatchupElement.STATUS.FINISHED : MatchupElement.STATUS.LIVE
+                    let matchup = MatchupElement(link: link, home: teamHome, away: teamAway, result: result, status: status)
+                    matchups.append(matchup)
+                }
+                return matchups
+            } catch(let error) {
+                Logger.log(.error, "Error while decoding HTML: \(error)")
+            }
+        }
+        return []
     }
     
     static func loadDetail(_ urlString: String) async -> DetailNews? {
@@ -163,4 +189,23 @@ struct DetailNews: Decodable {
     let thumbnailUrl: String
     var articleBody: String
     var articleElements: [ArticleElement]? = []
+}
+
+struct MatchupElement: Decodable, Identifiable {
+    
+    enum STATUS: Decodable {
+        case LIVE, FINISHED
+    }
+    
+    struct Team: Decodable {
+        let name: String
+        let image: String
+    }
+    
+    var id: String = UUID().uuidString
+    let link: String
+    let home: Team
+    let away: Team
+    let result: String
+    let status: STATUS
 }

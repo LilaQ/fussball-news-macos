@@ -12,8 +12,17 @@ struct sportnewsApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+//        WindowGroup {
+//            ContentView()
+//        }
+//        WindowGroup("Liveticker", for: String.self) { $tickerId in
+//            VStack {
+//                Text("Fart in my Face pls")
+//            }
+//        }
+        Settings {
+            EmptyView()
+//          MainMenuView()
         }
     }
 }

@@ -9,25 +9,17 @@ import SwiftUI
 import UserNotifications
 
 class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
-    var window: NSWindow!
-    var popover = NSPopover.init()
+
     var statusBar: StatusBarController?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        // Create the SwiftUI view that provides the contents
-        let contentView = ContentView()
-
-        // Set the SwiftUI's ContentView to the Popover's ContentViewController
-        popover.contentSize = NSSize(width: 420, height: 600)
-        popover.behavior = NSPopover.Behavior.transient
-        popover.contentViewController = NSHostingController(rootView: contentView)
-        
         //Initialising the status bar
-        statusBar = StatusBarController.init(popover)
+        statusBar = StatusBarController.init()
         NSApplication.shared.keyWindow?.close()
         
         //  no dock item / no menu bar
+        NSApp.appearance = .none
         NSApp.setActivationPolicy(.prohibited)
         
         URLCache.shared.memoryCapacity = 1_000_000_000 // ~50 MB memory space
@@ -35,10 +27,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         
         //  request notification permission
         requestNotificationPermission()
+        UNUserNotificationCenter.current().delegate = self
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, shouldPresent notification: UNMutableNotificationContent) -> Bool {
-        return true
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        await NSApplication.shared.keyWindow?.close()
+        if statusBar != nil {
+            DispatchQueue.main.async {
+                self.statusBar?.newsToPush = response.notification.request.content.userInfo["id"] as? String ?? nil
+                self.statusBar?.toggleNewsPopover(sender: self.statusBar!.newsButton)
+            }
+        }
     }
 
     func requestNotificationPermission() {

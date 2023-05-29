@@ -35,9 +35,11 @@ class StatusBarController {
     private var updateText: NSStatusItem?
     private var newsText: NSStatusItem?
     
-    private var popover: NSPopover
+    public var newsButton: NSStatusBarButton
+    public var newsToPush: String? = nil
+    
     private var mainMenuPopover: NSPopover
-    private var newsPopover: NSPopover
+    public var newsPopover: NSPopover
     
     var clicked: NSStatusItem?
     var shortNews: [ShortNews] = []
@@ -47,12 +49,9 @@ class StatusBarController {
     static let WINDOW_WIDTH = "windowWidth"
     static let WINDOW_HEIGHT = "windowHeight"
     
-    init(_ popover: NSPopover) {
-        self.popover = popover
-        self.popover.behavior = .transient
+    init() {
         
         statusBar = NSStatusBar.init()
-        
         
         if UserDefaults.standard.value(forKey: StatusBarController.WINDOW_WIDTH) == nil {
             UserDefaults.standard.set(800, forKey: StatusBarController.WINDOW_WIDTH)
@@ -85,7 +84,10 @@ class StatusBarController {
         mainMenuItem.button?.layer?.contents = tintedImage(iconImage!, color: NSColor.black)
         mainMenuItem.button?.wantsLayer = true
         
-//        updateText?.button?.title = "Pull news"
+        newsButton = (newsText?.button!)!
+        newsButton.attributedTitle = NSAttributedString(string: "News")
+        newsButton.action = #selector(toggleNewsPopover(sender:))
+        newsButton.target = self
         
         //  set click handler
         if let mainBarButton = mainMenuItem.button {
@@ -93,22 +95,10 @@ class StatusBarController {
             mainBarButton.action = #selector(toggleMainMenuPopover(sender:))
             mainBarButton.target = self
         }
-//        if let updateButton = updateText?.button {
-//            updateButton.attributedTitle = NSAttributedString(string: "Pull news")
-//            updateButton.action = #selector(triggerFullUpdate(sender:))
-//            updateButton.target = self
-//        }
-        if let newsButton = newsText?.button {
-            newsButton.attributedTitle = NSAttributedString(string: "News")
-            newsButton.action = #selector(toggleNewsPopover(sender:))
-            newsButton.target = self
-        }
         
         timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
         updateData()
-        
     }
-    
     
     @objc
     func toggleMainMenuPopover(sender: AnyObject) {
@@ -155,7 +145,7 @@ class StatusBarController {
             newsPopover.contentSize = NSSize(
                 width: UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_WIDTH),
                 height: UserDefaults.standard.integer(forKey: StatusBarController.WINDOW_HEIGHT))
-            showPopover(sender, popover: newsPopover, view: NewsView(shortNews: shortNews))
+            showPopover(sender, popover: newsPopover, view: NewsView(shortNews: shortNews, newsId: newsToPush, statusBarController: self))
         }
         else {
             hidePopover(sender, popover: newsPopover)
@@ -175,13 +165,7 @@ class StatusBarController {
         popover.performClose(sender)
     }
     
-    func mouseEventHandler(_ event: NSEvent?) {
-        if(popover.isShown) {
-//            hidePopover(event!)
-        }
-    }
-    
-    func generateNotification(title: String, body: String, sound: String?, imageFileUrl: URL?) {
+    func generateNotification(title: String, body: String, sound: String?, imageFileUrl: URL?, articleId: String) {
         let notificationCenter = UNUserNotificationCenter.current();
         notificationCenter.getNotificationSettings { settings in
             if settings.authorizationStatus == .authorized {
@@ -198,6 +182,7 @@ class StatusBarController {
                 if sound != nil {
                     self.playSound(sound!)
                 }
+                content.userInfo = ["id": articleId]
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                 notificationCenter.add(request)
@@ -235,10 +220,10 @@ class StatusBarController {
                         if let uri = news.img {
                             downloadImage(from: uri, closure: { fileData in
                                 let fileUri = self.set(data: fileData, ext: uri.lastPathComponent)
-                                self.generateNotification(title: news.title, body: news.title, sound: nil, imageFileUrl: fileUri)
+                                self.generateNotification(title: news.title, body: news.title, sound: nil, imageFileUrl: fileUri, articleId: news.id)
                             })
                         } else {
-                            generateNotification(title: news.title, body: news.title, sound: nil, imageFileUrl: nil)
+                            generateNotification(title: news.title, body: news.title, sound: nil, imageFileUrl: nil, articleId: news.id)
                         }
                     }
                 }

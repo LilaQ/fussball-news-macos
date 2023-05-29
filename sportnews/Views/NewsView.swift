@@ -50,6 +50,8 @@ struct FilterView: View {
 struct NewsView: View {
         
     let shortNews: [ShortNews]
+    var newsId: String? = nil
+    let statusBarController: StatusBarController
     @State var filteredComps: [String] = []
     @State var showFilter: Bool = false
     
@@ -100,12 +102,23 @@ struct NewsView: View {
                     VStack(alignment: .leading) {
                         ForEach(shortNews) { news in
                             if !filteredComps.contains(news.competition) {
-                                DetailView(news: news, onToggle: {
+                                DetailView(news: news, statusBarController: statusBarController, open: news.id == newsId, onToggle: {
                                     withAnimation {
                                         reader.scrollTo(news.id, anchor: .top)
                                     }
                                 })
                                 .id(news.id)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    //  news Id passed to view, scroll there
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        if let newsId = newsId {
+                            print("found a newsId to scroll to: \(newsId)")
+                            withAnimation {
+                                reader.scrollTo(newsId, anchor: .top)
                             }
                         }
                     }
